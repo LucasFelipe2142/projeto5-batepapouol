@@ -39,6 +39,7 @@ body{
 .container-msg{
     width: 100%;
     margin-top: 80px;
+    margin-bottom: 80px;
     padding-top:26px;
 
 }
@@ -114,4 +115,17 @@ body{
     font-weight: bold;
     margin-right: 3px;
     margin-left: 3px;
+}
+
+.msg-privada{
+    height: 40px;
+    margin-bottom: 4px;
+    background-color: #FFDEDE;
+    display: flex;
+    align-items: center;
+    padding-left: 17px;
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
 }

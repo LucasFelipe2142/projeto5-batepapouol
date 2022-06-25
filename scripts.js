@@ -4,6 +4,7 @@ let nome1;
 
 function iniciar(){
     name = prompt("Digite o seu nome; ");
+    buscar_msg()
     const nome = {
         name: name
     };
@@ -33,14 +34,14 @@ function buscar_msg(){
     const promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
     promise.then(busca)
 }
-buscar_msg()
 
 function busca (busca){
-    console.log(busca.data[99])
+    console.log(busca.data)
     const array = busca.data;
 
     for (let i = 0; i < array.length; i++) {
-        msg_container.innerHTML += `
+        if(array[i].type == 'message'){
+            msg_container.innerHTML += `
                                 <div class="msg">
                                     <div class="hora">
                                         (${array[i].time})
@@ -53,15 +54,51 @@ function busca (busca){
                                     para
 
                                     <div class ="privacidade">
-                                        ${array[i].type}
+                                        ${array[i].to}
                                     </div>
 
                                         ${array[i].text}
                                  </div> `;
+        }
+        
+        if(array[i].type == 'status'){
+            msg_container.innerHTML += `
+                                <div class="msg-entrou">
+                                    <div class="hora">
+                                        (${array[i].time})
+                                    </div>
+
+                                    <div class="name">
+                                        ${array[i].from}
+                                    </div>
+                                    
+
+                                        ${array[i].text}
+                                 </div> `;
+        }
         
     }
 
-    
+    if(array[i].type == 'private_message'){
+        msg_container.innerHTML += `
+                            <div class="msg-privada">
+                                <div class="hora">
+                                    (${array[i].time})
+                                </div>
+
+                                <div class="name">
+                                    ${array[i].from}
+                                </div>
+                                
+                                para
+
+                                <div class ="privacidade">
+                                    ${array[i].to}
+                                </div>
+
+                                    ${array[i].text}
+                             </div> `;
+    }
         
     
 
