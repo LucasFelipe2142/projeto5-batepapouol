@@ -78,7 +78,7 @@ body{
 /*js*/
 
 .msg{
-    width: 414px;
+    width: 100%;
     padding: 12px 17px 12px 17px;
     margin-bottom: 4px;
     background-color: #ffffff; 
@@ -91,7 +91,7 @@ body{
 }
 
 .msg-entrou{
-    width: 414px;
+    width: 100%;
     padding: 12px 17px 12px 17px;
     margin-bottom: 4px;
     background-color: #DCDCDC;
@@ -115,6 +115,7 @@ body{
     font-weight: bold;
     margin-right: 3px;
     display: inline;
+    word-break: break-word
 }
 
 .privacidade{
@@ -125,7 +126,7 @@ body{
 }
 
 .msg-privada{
-    width: 414px;
+    width: 100%;
     padding: 12px 17px 12px 17;
     margin-bottom: 4px;
     background-color: #FFDEDE;
