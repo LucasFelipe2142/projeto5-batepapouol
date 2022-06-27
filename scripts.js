@@ -26,8 +26,32 @@ function deu_erro(error){
 
 function inserir_nome(){
     console.log("foi")
+    const promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/participants");
+    promise.then(busca_nome)
 }
 
+function busca_nome(buscar){
+    const date = new Date().toLocaleTimeString();
+    console.log(buscar.data)
+    const array = buscar.data;
+    console.log(array[2].name)
+    for (let i = 0; i < array.length; i++) {
+        if(array[i].name == name){
+            msg_container.innerHTML += `
+                                <div class="msg-entrou">
+                                    <div class="hora">
+                                        (${date})
+                                    </div>
+
+                                    <div class="name">
+                                        ${array[i].name}
+                                    </div>
+
+                                        entrou na sala
+                                 </div> `;
+        }
+    }
+}
 
 function buscar_msg(){
  
@@ -36,7 +60,7 @@ function buscar_msg(){
 }
 
 function busca (busca){
-    console.log(busca.data)
+    let elementoQueQueroQueApareca;
     const array = busca.data;
 
     for (let i = 0; i < array.length; i++) {
@@ -57,7 +81,9 @@ function busca (busca){
                                         ${array[i].to}
                                     </div>
 
+                                    <div class ="tex">
                                         ${array[i].text}
+                                    </div>
                                  </div> `;
         }
         
@@ -75,11 +101,12 @@ function busca (busca){
 
                                         ${array[i].text}
                                  </div> `;
+            
         }
         
     }
 
-    if(array[i].type == 'private_message'){
+    /*if(array[i].type == 'private_message'){
         msg_container.innerHTML += `
                             <div class="msg-privada">
                                 <div class="hora">
@@ -96,12 +123,16 @@ function busca (busca){
                                     ${array[i].to}
                                 </div>
 
+                                <div class ="tex">
                                     ${array[i].text}
+                                </div>
+
                              </div> `;
-    }
+    }*/
         
     
-
+    
+    
 }
 
 
@@ -135,8 +166,12 @@ function enviar_msg(){
             "https://mock-api.driven.com.br/api/v6/uol/status",
             nome1
           );
-        promise.then(inserir_nome);
+        promise.then(inserir_nome_logado);
         promise.catch(deu_erro);
+    }
+
+    function inserir_nome_logado(){
+        console.log("logado")
     }
 
     setInterval(logado, 5000);
